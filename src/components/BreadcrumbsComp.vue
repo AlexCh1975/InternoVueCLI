@@ -24,10 +24,6 @@
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-$widthSite: 1200px;
-$color-title: #292F36;
-$color-text: #4D5053;
-
 .breadcrumbs{
     display: flex;
     cursor: pointer;

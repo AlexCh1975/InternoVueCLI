@@ -79,16 +79,16 @@
   </template>
   
   <script>
-import news1 from '@/assets/new-img/news_1.png'
-import news2 from '@/assets/new-img/news_2.png'
-import news3 from '@/assets/new-img/news_3.png'
-import news4 from '@/assets/new-img/news_4.png'
-import news5 from '@/assets/new-img/news_5.png'
-import news6 from '@/assets/new-img/news_6.png'
-import postImg from '@/assets/post_img.png'
+import news1 from '@/assets/new-img/news_1.png';
+import news2 from '@/assets/new-img/news_2.png';
+import news3 from '@/assets/new-img/news_3.png';
+import news4 from '@/assets/new-img/news_4.png';
+import news5 from '@/assets/new-img/news_5.png';
+import news6 from '@/assets/new-img/news_6.png';
+import postImg from '@/assets/post_img.png';
 
-import BreadcrumbsComp from '@/components/BreadcrumbsComp.vue'
-import NewsCardComponent from '@/components/NewsCardComponent.vue'
+import BreadcrumbsComp from '@/components/BreadcrumbsComp.vue';
+import NewsCardComponent from '@/components/NewsCardComponent.vue';
 
   export default {
     name: 'BlogComp',
@@ -148,30 +148,7 @@ import NewsCardComponent from '@/components/NewsCardComponent.vue'
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->
   <style lang="scss">
-    $widthSite: 1200px;
-    $color-title: #292F36;
-    $color-text: #4D5053;
 
-    .center {
-    padding-left: calc(50% - 600px);
-    padding-right: calc(50% - 600px);
-    }
-
-    %flex-center{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    %flex-center-x{
-        display: flex;
-        justify-content: center;
-    }
-
-    %flex-center-y{
-        display: flex;
-        align-items: center;
-    }
 
     /******* Blog ********/
 

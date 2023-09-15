@@ -1,0 +1,24 @@
+@import 'reset.scss';
+@import 'variables.scss';
+
+.center {
+    padding-left: calc(50% - 600px);
+    padding-right: calc(50% - 600px);
+}
+
+%flex-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+%flex-center-x{
+    display: flex;
+    justify-content: center;
+}
+
+%flex-center-y{
+    display: flex;
+    align-items: center;
+}
+

@@ -76,30 +76,7 @@
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->
   <style lang="scss">
-    $widthSite: 1200px;
-    $color-title: #292F36;
-    $color-text: #4D5053;
-
-    .center {
-    padding-left: calc(50% - 600px);
-    padding-right: calc(50% - 600px);
-    }
-
-    %flex-center{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    %flex-center-x{
-        display: flex;
-        justify-content: center;
-    }
-
-    %flex-center-y{
-        display: flex;
-        align-items: center;
-    }
+ 
 
     .footer{
         display: flex;
