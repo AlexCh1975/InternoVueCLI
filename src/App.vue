@@ -4,7 +4,8 @@
     <!-- <Home/> -->
     <!-- <BlogComp/> -->
     <!-- <BlogDetails/> -->
-    <ProjectComp />
+    <!-- <ProjectComp /> -->
+    <ProjectDetails />
     <FooterComponent/>
   </div>
 </template>
@@ -16,7 +17,8 @@ import FooterComponent from './components/FooterComponent.vue';
 // import Home from './pages/Home.vue';
 // import BlogComp from './pages/Blog.vue';
 // import BlogDetails from './pages/BlogDetails.vue';
-import ProjectComp from '@/pages/ProjectComp.vue';
+// import ProjectComp from '@/pages/ProjectComp.vue';
+import ProjectDetails from '@/pages/ProjectDetails.vue';
 
 export default {
   name: 'App',
@@ -25,7 +27,8 @@ export default {
     // Home,
     // BlogComp,
     // BlogDetails,
-    ProjectComp,
+    // ProjectComp,
+    ProjectDetails,
     FooterComponent
   }
 }
