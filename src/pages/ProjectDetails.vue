@@ -52,16 +52,10 @@ export default {
     
     data() {
         return {
-            // paginationIndex: 0,
             interval: 0,
             currentSlideIndex: 0,
             paginations: 0,
-            // paginations: 0,
-            // sliderItems: [
-            //     {id: 1, name: 'slider 1', urlImg: 'slide1.png', isActive: false},
-            //     {id: 2, name: 'slider 2', urlImg: 'project-img2.png', isActive: false},
-            //     {id: 3, name: 'slider 3', urlImg: 'project-img6.png', isActive: false},
-            // ],
+  
         };
     },
 
@@ -101,35 +95,19 @@ export default {
             }
         },
 
-        // showSlide(slide){
-        //     slide.isActive = !slide.isActive;
-        //     if (slide.isActive){
-        //         clearInterval(this.GET_INTERVAL);
-        //     }else{
-        //         this.carousel();
-        //     }
-        // },
-
         carousel(){
             // let vm = this;
             this.interval = setInterval(() => {
                 this.nexSlide();
             }, 2000)
         }
-        // carousel(){
-        //     let vm = this;
-        //     this.getInterval = setInterval(() => {
-        //         vm.NEXT_SLIDE();
-        //     }, 2000)
-        // }
+
 
     },
     created(){
         this.feachSliders(this.sliderItems)
         this.paginations = this.sliderItems.length;
         this.carousel();
-        // this.feachSliders(this.CAROUSEL);
-        // this.NEXT_SLIDE()
     }
 };
 </script>

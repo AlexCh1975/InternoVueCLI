@@ -10,18 +10,7 @@
         <div class="header__right">
             <nav class="header__nav">
 <!-- Nav -->
-                <!-- <NavComponent :navItems="navItems"/> -->
-                <ul class="nav">
-                    <li class="nav__item">
-                        <a href="#">Home</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#">Project</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#">Blog</a>
-                    </li>
-                </ul>
+                <NavComponent />
 <!--  -->
             </nav>
         </div>
@@ -30,20 +19,22 @@
 </template>
 
 <script>
-// import NavComponent from '@/components/NavComponent.vue';
+import NavComponent from '@/components/NavComponent.vue';
 
 
 export default {
   name: 'HeaderComponent',
   components: {
-    // NavComponent
+    NavComponent
   },
   props: {
    
   },
     data(){
         return {
-            navItems: ['Home', 'Project', 'Blog']
+            navItems: [
+                '/home', '/blog', '/project', 
+           ]
         }
     }
 }
@@ -67,7 +58,6 @@ export default {
     }
 
     &__heading{
-        // color: $color-title;
         color: #292F36;;
         font-family: DM Serif Display;
         font-size: 40px;
@@ -78,16 +68,5 @@ export default {
 
 }
 
-.nav{
-    @extend %flex-center-y;
 
-    &__item{
-        margin-left: 30px;
-        color: $color-title;
-        text-align: center;
-        font-family: Jost;
-        font-size: 20px;
-        line-height: 125%;
-    }
-}
 </style>

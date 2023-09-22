@@ -1,7 +1,9 @@
 <template>
     <!-- <div> -->
         <div class="cart-project">
-            <img class="cart-project__img" :src="cart.imgUrl" :alt="cart.title" />
+            <img class="cart-project__img" 
+                :src="require(`@/assets/project-imeges/${cart.imgUrl}`)" 
+                :alt="cart.title" />
             <div class="cart-project__content">
                 <div class="cart-project__info">
                     <h4 class="cart-project__title">{{ cart.title }}</h4>
@@ -46,6 +48,7 @@ export default {
 .cart-project{
     width: 585px;
     height: auto;
+    margin-bottom: 30px;
 
     &__img{
         margin-bottom: 24px;

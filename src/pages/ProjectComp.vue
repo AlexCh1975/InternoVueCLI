@@ -17,100 +17,68 @@
                 </button>
             </div>
             <div class="carts-projects">
-                <CartProject
-                    v-for="cart in isCarts"
+                <div class="catrs-projects__left">
+                    <CartProject
+                    v-for="cart in isCartsLeft"
                     :key="cart.id"
                     :cart="cart"
                 />
+                </div>
+                <div class="catrs-projects__right">
+                    <CartProject
+                    v-for="cart in isCartsRight"
+                    :key="cart.id"
+                    :cart="cart"
+                />
+                </div>
+            </div>
+            <div class="pagination__conteiner">
+                <PaginationItem  />
             </div>
         </main>
     </div>
 </template>
 
 <script>
-import projecrImg1 from '@/assets/project-imeges/project-img1.png';
-import projecrImg2 from '@/assets/project-imeges/project-img2.png';
-import projecrImg3 from '@/assets/project-imeges/project-img3.png';
-import projecrImg4 from '@/assets/project-imeges/project-img4.png';
-import projecrImg5 from '@/assets/project-imeges/project-img5.png';
-import projecrImg6 from '@/assets/project-imeges/project-img6.png';
-import projecrImg7 from '@/assets/project-imeges/project-img7.png';
-import projecrImg8 from '@/assets/project-imeges/project-img8.png';
 
 import BreadcrumbsComp from '@/components/BreadcrumbsComp.vue';
 import CartProject from '@/components/CartProject.vue';
+import PaginationItem from '@/components/PaginationItem.vue'
+import {mapActions, mapState} from 'vuex';
 
 export default {
     name: 'ProjectComp',
     components: {
         BreadcrumbsComp,
-        CartProject
+        CartProject,
+        PaginationItem
     },
     data() {
         return {
             breadcrumbsTop: ['Home', 'Project'],
             buttons: ['Bathroom', 'Bed Room', 'Kitchan', 'Living Area'],
             key: 'Artchitecture',
-            obj: {
-                Artchitecture: [
-                    {imgUrl: projecrImg1, title: 'Minimal Bedroom'},
-                    {imgUrl: projecrImg3, title: 'Classic Minimal Bedroom'},
-                    {imgUrl: projecrImg5, title: 'Minimal Bedroom table'},
-                    {imgUrl: projecrImg7, title: 'Minimal Bedroom'},
-                    {imgUrl: projecrImg2, title: 'Minimal Bedroom'},
-                    {imgUrl: projecrImg4, title: 'Minimal Bedroom'},
-                    {imgUrl: projecrImg6, title: 'System Table'},
-                    {imgUrl: projecrImg8, title: 'Minimal Bedroom'},
-                ],
-                Bed_Room: [
-                    {imgUrl: projecrImg1, title: 'Minimal Bedroom'},
-                    {imgUrl: projecrImg1, title: 'Classic Minimal Bedroom'},
-                    {imgUrl: projecrImg1, title: 'Minimal Bedroom table'},
-                    {imgUrl: projecrImg1, title: 'Minimal Bedroom'},
-                    {imgUrl: projecrImg1, title: 'Minimal Bedroom'},
-                    {imgUrl: projecrImg1, title: 'Minimal Bedroom'},
-                    {imgUrl: projecrImg1, title: 'System Table'},
-                    {imgUrl: projecrImg1, title: 'Minimal Bedroom'},
-                ],
-                Bathroom: [
-                    {imgUrl: projecrImg1, title: 'Minimal Bedroom'},
-                    {imgUrl: projecrImg7, title: 'Minimal Bedroom'},
-                    {imgUrl: projecrImg6, title: 'System Table'},
-                    {imgUrl: projecrImg4, title: 'Minimal Bedroom'},
-                    {imgUrl: projecrImg3, title: 'Classic Minimal Bedroom'},
-                    {imgUrl: projecrImg5, title: 'Minimal Bedroom table'},
-                    {imgUrl: projecrImg2, title: 'Minimal Bedroom'},
-                    {imgUrl: projecrImg8, title: 'Minimal Bedroom'},
-                ],
-                Kitchan: [
-                    {imgUrl: projecrImg2, title: 'Minimal Bedroom'},
-                    {imgUrl: projecrImg2, title: 'Minimal Bedroom'},
-                    {imgUrl: projecrImg2, title: 'System Table'},
-                    {imgUrl: projecrImg2, title: 'Minimal Bedroom'},
-                    {imgUrl: projecrImg2, title: 'Classic Minimal Bedroom'},
-                    {imgUrl: projecrImg2, title: 'Minimal Bedroom table'},
-                    {imgUrl: projecrImg2, title: 'Minimal Bedroom'},
-                    {imgUrl: projecrImg2, title: 'Minimal Bedroom'},
-                ],
-                Living_Area: [
-                    {imgUrl: projecrImg2, title: 'Minimal Bedroom'},
-                    {imgUrl: projecrImg2, title: 'Minimal Bedroom'},
-                    {imgUrl: projecrImg2, title: 'System Table'},
-                    {imgUrl: projecrImg2, title: 'Minimal Bedroom'},
-                    {imgUrl: projecrImg4, title: 'Classic Minimal Bedroom'},
-                    {imgUrl: projecrImg4, title: 'Minimal Bedroom table'},
-                    {imgUrl: projecrImg4, title: 'Minimal Bedroom'},
-                    {imgUrl: projecrImg4, title: 'Minimal Bedroom'},
-                ],
-            },
+
         };
     },
     computed: {
+        ...mapState(['cartsObj']),
+
         isCarts(){
-            return this.obj[this.key];
+            return this.cartsObj[this.key];
+        },
+
+        isCartsLeft(){
+            return this.isCarts.slice(0, 4);
+        },
+
+        isCartsRight(){
+            return this.isCarts.slice(4, 8);
         }
     },
     methods: {
+        ...mapActions(['fetchCartsObj']),
+
         selectProject(btn, index){
             btn = btn.split(' ').join('_');
             const temp = this.key;
@@ -118,6 +86,9 @@ export default {
             this.buttons[index] = temp;
         }
     },
+    created(){
+        this.fetchCartsObj(this.cartsObj);
+    }
 };
 </script>
 
@@ -154,7 +125,7 @@ export default {
     display: flex;
     flex-direction: column;
     @extend %flex-center-y;
-    margin-bottom: 61px;
+    padding-bottom: 200px;
 
     &__buttons{
         display: flex;
@@ -189,16 +160,20 @@ export default {
 
 /*** Carts-projects */
 
-.carts-projects{
-    // max-height: 3920px;
-    // min-height: 2554px;
-    max-height: 3350px;
-    margin-bottom: 61px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    flex-wrap: wrap;
+.carts-projects{    
     gap: 30px;
+    display: flex;
+    flex-wrap: wrap;
+
+    &__left{
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__right{
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .cart-project{
@@ -215,4 +190,10 @@ export default {
     }
 }
 
+.pagination{
+    &__conteiner{
+        @extend %flex-center-x;
+        padding-top: 61px; 
+    }
+}    
 </style>

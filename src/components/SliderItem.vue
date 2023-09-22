@@ -17,7 +17,6 @@
 </template>
 
 <script>
-// import { mapActions } from 'vuex';
 
 export default {
     name: 'SliderItem',
@@ -38,7 +37,6 @@ export default {
     },
 
     methods: {
-        // ...mapActions(['SHOW_SLIDE']),
 
         showSlide(slide){
             this.$emit('showSlide', slide);

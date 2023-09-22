@@ -1,29 +1,29 @@
 <template>
-    <div class="news__content">
-        <div v-for="product in products" :key="product.id" class="card-news">
-            <div class="card-news__img_box">
-                <img :src="product.imgUrl" alt="news pic" class="card-news__img">
-                <div class="card-news__img_annotation">{{product.annotation}}</div>
+    <div class="cart">
+        <!-- <div v-for="product in products" :key="product.id" class="card-news"> -->
+            <div class="cart__img_box">
+                <img :src="require(`@/assets/new-img/news_3.png`)" alt="news pic" class="cart__img">
+                <div class="cart-news__img_annotation">{{product.annotation}}</div>
             </div>
-            <div class="card-news__content">
-                <div class="card-news__title">
+            <div class="cart__content">
+                <div class="cart__title">
                     {{product.heading}}
                 </div>
-                <div class="card-news__block">
-                    <div class="card-news__date">{{product.date}}</div>
-                    <div class="card-news__arrew">
-                        <svg class="card-news__arrew_svg" xmlns="http://www.w3.org/2000/svg" width="52" height="53" viewBox="0 0 52 53" fill="none">
+                <div class="cart__block">
+                    <div class="cart__date">{{product.date}}</div>
+                    <div class="cart__arrew">
+                        <svg class="cart__arrew_svg" xmlns="http://www.w3.org/2000/svg" width="52" height="53" viewBox="0 0 52 53" fill="none">
                             <circle cx="26" cy="26.267" r="26" fill="#F4F0EC"/>
                             <path d="M23.7714 32.9527L29.7143 26.267L23.7714 19.5813" stroke="#292F36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                        <svg class="card-news__arrew_svg-hover" xmlns="http://www.w3.org/2000/svg" width="52" height="53" viewBox="0 0 52 53" fill="none">
+                        <svg class="cart__arrew_svg-hover" xmlns="http://www.w3.org/2000/svg" width="52" height="53" viewBox="0 0 52 53" fill="none">
                             <circle cx="26" cy="26.267" r="26" fill="#fff"/>
                             <path d="M23.7714 32.9527L29.7143 26.267L23.7714 19.5813" stroke="#292F36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
                 </div>
             </div>
-        </div>
+        <!-- </div> -->
     </div>
   </template>
   
@@ -32,10 +32,14 @@
   export default {
     name: 'NewsCardComponent',
     props: {
-     products: {
-        type: Array,
-        required: true
-     }
+        product: {
+            type: Object,
+            dafault: () => {}
+        },
+    },
+    
+    computed: {
+
     }
   }
   </script>
@@ -43,7 +47,7 @@
   <!-- Add "scoped" attribute to limit CSS to this component only -->
   <style scoped lang="scss">
 
-.card-news{
+.cart{
     width: 382px;
     display: flex;
     flex-direction: column;
@@ -87,11 +91,11 @@
 
     }
 
-    &:hover .card-news__arrew_svg-hover{
+    &:hover .cart__arrew_svg-hover{
         display: block;
     }
 
-    &:hover .card-news__arrew_svg{
+    &:hover .cart__arrew_svg{
         display: none;
     }
 

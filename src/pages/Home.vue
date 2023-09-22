@@ -21,7 +21,7 @@
             </section>
         </div>
         <main class="product-content">
-            <div class="product">
+            <div class="product center">
                 <h2 class="product__headind">
                     Follow Our Projects
                 </h2>
@@ -131,8 +131,13 @@
                     It is a long established fact that a reader will be distracted by the of readable content of a page when lookings at its layouts the points of using.
                 </div>
 <!-- Cart content -->
-                <NewsCardComponent :products="products" />   
-<!--  -->
+                <div class="news__carts">
+                    <NewsCardComponent :product="product"
+                        v-for="product in products" 
+                        :key="product.id"
+                    /> 
+                </div>
+<!--  -->       
             </div>
         </main>
     </div>
@@ -148,6 +153,7 @@ import news1 from '@/assets/new-img/news_1.png';
 import news2 from '@/assets/new-img/news_2.png';
 import news3 from '@/assets/new-img/news_3.png';
 import NewsCardComponent from '../components/NewsCardComponent.vue';
+import { mapMutations, mapState } from 'vuex';
 
   export default {
     name: 'FooterComponent',
@@ -187,8 +193,21 @@ import NewsCardComponent from '../components/NewsCardComponent.vue';
         }
         
     },
-    methods: {
 
+    
+
+    computed: {
+        ...mapState(['productParty']),
+        getProductsParty(){
+            return this.productParty.slice(0, 2)
+        }
+    },
+    methods: {
+        ...mapMutations(['SET_PRODUCTS_PARTY_HOME']),
+    },
+    
+    created(){
+        this.SET_PRODUCTS_PARTY_HOME();
     }
   }
   </script>
@@ -326,7 +345,6 @@ padding-right: calc(50% - 600px);
 
 .card{
     width: 550px;
-    // border-top-right-radius: 30px;
 
     &:nth-child(1) .card__img{
         border-top-right-radius: 60px;
@@ -463,88 +481,12 @@ padding-right: calc(50% - 600px);
         row-gap: 30px;
     }
 
-    // &__arrew_svg-hover{
-    //     display: none;
-    // }
-
-    // &__card{
-    //     width: 382px;
-    //     display: flex;
-    //     flex-direction: column;
-    //     align-items: center;
-    //     padding: 21px;
-    //     border-radius: 62px;
-    //     border: 1px solid #E7E7E7;
-    //     box-shadow: 0px 10px 30px 0px rgba(255, 255, 255, 0.25);
-    //     cursor: pointer;
-    //     transition: all .7s;
-
-    //     &_img{
-    //         border-top-left-radius: 31px;
-    //         border-top-right-radius: 31px;
-    //     }
-
-    //     &:hover .news__arrew_svg-hover{
-    //         display: block;
-    //     }
-
-    //     &:hover .news__arrew_svg{
-    //         display: none;
-    //     }
-
-    //     &:hover{
-    //         background: #F4F0EC;
-    //     } 
-
-    // }
-
-    // &__img{
-
-    //     &_box{
-    //         position: relative;
-    //     }
-
-    //     &_annotation{
-    //         position: absolute;
-    //         left: 20px;
-    //         bottom: 20px;
-    //         color: $color-text;
-    //         font-family: Jost;
-    //         font-size: 16px;
-    //         line-height: 150%; /* 24px */
-    //         letter-spacing: 0.16px;
-    //         text-transform: capitalize;
-    //         border-radius: 8px 8px 8px 0px;
-    //         background: #FFF;
-    //         padding: 4px 5px 8px 11px;
-    //         width: 124px;
-    //         height: 41px;
-    //         flex-shrink: 0;
-    //     }
-    // }
-
-    // &__title{
-    //     color: $color-title;
-    //     font-family: DM Serif Display;
-    //     font-size: 25px;
-    //     line-height: 125%; /* 31.25px */
-    //     letter-spacing: 0.5px;
-    //     margin-top: 21px;
-    //     margin-bottom: 30px;
-    // }
-
-    // &__block{
-    //     @extend %flex-center-y;
-    //     justify-content: space-between;
-    // }
-
-    // &__date{
-    //     color: $color-text;
-    //     font-family: Jost;
-    //     font-size: 16px;
-    //     line-height: 150%; /* 24px */
-    //     letter-spacing: 0.16px;
-    //     text-transform: capitalize;
-    // }
 }
+
+.news__carts{
+        @extend %flex-center-x;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 26px;
+    }
 </style>

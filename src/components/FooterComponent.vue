@@ -25,20 +25,12 @@
                 </div>
             </div>
             <nav class="footer__nav">
-                <div class="footer__title">Pages</div>
+                <h3 class="footer__title">Pages</h3>
 <!-- Nav -->
                 <!-- <NavComponent :navItems="navItems"/> -->
-                <ul class="nav">
-                    <li class="nav__item">
-                        <a href="./index.html">Home</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#">Project</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="/blog.html">Blog</a>
-                    </li>
-                </ul>
+                <NavComponent 
+                    class="footer-nav"
+                />
 <!--  -->
             </nav>
             <div class="footer__contact">
@@ -56,19 +48,19 @@
   </template>
   
   <script>
-// import NavComponent from '@/components/NavComponent.vue';
+import NavComponent from '@/components/NavComponent.vue';
 
   export default {
     name: 'FooterComponent',
     components: {
-        // NavComponent 
+        NavComponent 
     },  
     props: {
     
     },
     data(){
         return {
-            navItems: ['Home', 'Project', 'Blog']
+        
         }
     }
   }
@@ -122,17 +114,6 @@
             font-size: 25px;
             line-height: 125%; /* 31.25px */ 
             margin-bottom: 9px;
-        }
-    }
-
-    .nav{
-        
-        &__item{
-            color: $color-text;
-            font-family: Jost;
-            font-size: 22px;
-            line-height: 300%; /* 66px */
-            letter-spacing: 0.22px;
         }
     }
 

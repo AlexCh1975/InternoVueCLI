@@ -6,33 +6,25 @@
                 <ArticlesComp />
                 <article class="blog-article" v-for="article in newArticles" :key="article.id">
                     <h1 class="blog-article__heading">
-                        <!-- Let’s Get Solution for Building<br>
-                        Construction Work -->
                         {{ article.title }}
                     </h1>
                     <img class="blog-article__img" 
                         :src="article.img" alt="blog-article__img"
                      />
                     <div class="blog-article__content">
-                        <!-- <div class="blog-article__date">26 December,2022 </div> -->
+                        
                         <div class="blog-article__date">{{ article.date }}</div>
 <!--  breadcrumbs-->
                         <BreadcrumbsComp :breadcrumbs="breadcrumbs" />
-                        <!-- <ul class="blog-article__breadcrumbs">
-                            <li class="blog-article__breadcrumbs_li">Interior</li>
-                            <li class="blog-article__breadcrumbs_li">Home</li>
-                            <li class="blog-article__breadcrumbs_li">Decore</li>
-                        </ul> -->
+                    
 <!--  -->
                     </div>
                     <div class="blog-article__text">
                         <p class="blog-article__p1">
                             {{ article.text1 }}
-                            <!-- Lorem ipsum dolor sit amet, adipiscing Aliquam eu sem vitae turpmaximus.posuere in.Contrary to popular belief.There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injecthumour, or randomised words which don't look even slightly believable. -->
                         </p>
                         <p class="blog-article__p">
                             {{ article.text2 }}
-                            <!-- Embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary. -->
                         </p>
                     </div>
                 </article>

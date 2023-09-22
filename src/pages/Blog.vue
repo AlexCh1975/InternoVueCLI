@@ -5,10 +5,6 @@
                 <h1 class="top-article__heading">Articles & News</h1>
 
                 <BreadcrumbsComp :breadcrumbs="breadcrumbs" slot=""/>
-                <!-- <ul class="top-article__breadcrumbs">
-                    <li class="top-article__li">Home</li>
-                    <li class="top-article__li">Blog</li>
-                </ul> -->
 
             </div>
         </div>
@@ -38,40 +34,22 @@
                 </section>
             </article>
             <article class="news-blog">
-                <div class="news__heading">
+                <div class="news-blog__heading">
                     Articles & News
                 </div>
                 <!-- <div class="news__content"> -->
+                <div  class="carts-news">
 <!-- Card -->
 
-                <NewsCardComponent :products="products" />
+                    <NewsCardComponent :product="product"
+                        v-for="product in productParty" 
+                        :key="product.id"
+                    />
 
 <!--  -->
-                <!-- </div> -->
-                <div class="news__conteiner">
-                    <ul class="pagination">
-                        <li class="pagination__li number">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="53" height="52" viewBox="0 0 53 52" fill="none">
-                                <circle cx="26.5" cy="26" r="26" fill="#F4F0EC"/>
-                            </svg>
-                        </li>
-                        <li class="pagination__li number">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="53" height="52" viewBox="0 0 53 52" fill="none">
-                                <circle cx="26.5" cy="26" r="25.5" stroke="#CDA274"/>
-                            </svg>
-                        </li>
-                        <li class="pagination__li number">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="53" height="52" viewBox="0 0 53 52" fill="none">
-                                <circle cx="26.5" cy="26" r="25.5" stroke="#CDA274"/>
-                            </svg>
-                        </li>
-                        <li class="pagination__li">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="53" height="52" viewBox="0 0 53 52" fill="none">
-                                <circle cx="26.5" cy="26" r="25.5" stroke="#CDA274"/>
-                                <path d="M23.5571 32L29.5 25.3143L23.5571 18.6286" stroke="#292F36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </li>
-                    </ul>
+                </div>
+                <div class="pagination__conteiner">
+                    <PaginationItem  />
                 </div>
             </article>
         </main>
@@ -79,69 +57,48 @@
   </template>
   
   <script>
-import news1 from '@/assets/new-img/news_1.png';
-import news2 from '@/assets/new-img/news_2.png';
-import news3 from '@/assets/new-img/news_3.png';
-import news4 from '@/assets/new-img/news_4.png';
-import news5 from '@/assets/new-img/news_5.png';
-import news6 from '@/assets/new-img/news_6.png';
+
 import postImg from '@/assets/post_img.png';
 
 import BreadcrumbsComp from '@/components/BreadcrumbsComp.vue';
 import NewsCardComponent from '@/components/NewsCardComponent.vue';
+import PaginationItem from '@/components/PaginationItem.vue';
+
+import {mapActions, mapGetters, mapState} from 'vuex';
 
   export default {
     name: 'BlogComp',
     components: {
         NewsCardComponent,
-        BreadcrumbsComp
+        BreadcrumbsComp,
+        PaginationItem
     },
     props: {
      
     },
+
     data() {
         return {  
+            
             breadcrumbs: ['Home', 'Blog'],   
             postImg,    
-            products: [
-                {
-                    imgUrl: news1,
-                    heading: 'Let’s Get Solution For Building Construction Work',
-                    date: '26 December,2022',
-                    annotation: 'Kitchan Design'
-                },
-                {
-                    imgUrl: news2,
-                    heading: 'Low Cost Latest Invented Interior DesigningIdeas.',
-                    date: '22 December,2022',
-                    annotation: 'Living Design'
-                },
-                {
-                    imgUrl: news3,
-                    heading: 'Best For Any Office & Business Interior Solution',
-                    date: '25 December,2022',
-                    annotation: 'Interior Design'
-                },
-                {
-                    imgUrl: news4,
-                    heading: 'Best For Any Office & Business Interior Solution',
-                    date: '25 December,2022',
-                    annotation: 'Kitchan Design'
-                },
-                {
-                    imgUrl: news5,
-                    heading: 'Best For Any Office & Business Interior Solution',
-                    date: '25 December,2022',
-                    annotation: 'Living Design'
-                },
-                {
-                    imgUrl: news6,
-                    heading: 'Best For Any Office & Business Interior Solution',
-                    date: '25 December,2022',
-                    annotation: 'Interior Design'
-                },
-            ]
         }
+    },
+
+    mounted() {
+        this.CHANGR_PRODUCT_LIST('01');
+    },
+
+    computed: {
+        ...mapState(['productParty', 'products']),
+        ...mapGetters(['GET_PRODUCT_PARTY']),
+    },
+    methods: {
+        ...mapActions(['feachProducts', 'CHANGR_PRODUCT_LIST']),
+
+    },
+    created(){
+ 
     }
   }
   </script>
@@ -196,6 +153,7 @@ import NewsCardComponent from '@/components/NewsCardComponent.vue';
         padding-left: 8px;
         padding-right: 8px;
     }
+
 }
 
 
@@ -290,8 +248,9 @@ import NewsCardComponent from '@/components/NewsCardComponent.vue';
 }
 
 
-.news{
-    @extend %flex-center-y;
+.news-blog{
+    // @extend %flex-center-y;
+    display: flex;
     flex-direction: column;
 
     &__heading{
@@ -303,32 +262,24 @@ import NewsCardComponent from '@/components/NewsCardComponent.vue';
         margin-bottom: 12px;
     }
 
-    &__text{
-        width: 811px;
-        color: $color-text;
-        text-align: center;
-        font-family: Jost;
-        font-size: 22px;
-        line-height: 150%; /* 33px */
-        letter-spacing: 0.22px;
-        margin-bottom: 52px;
-    }
 
-    &__content{
-        display: flex;
-        flex-wrap: wrap;
-        column-gap: 27px;
-        row-gap: 30px;
-    }
+}
 
+.carts-news{
+    @extend %flex-center-x;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 26px;
+    row-gap: 30px;
 }
 
 
 .pagination{
-    margin-top: 51px;
-    display: flex;
-    gap: 20px;
-    align-items: center;
+    &__conteiner{
+        @extend %flex-center-x;
+        padding-top: 51px; 
+    }
+ 
 }
 
   </style>

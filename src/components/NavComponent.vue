@@ -1,11 +1,8 @@
 <template>
     <ul class="nav">
-        <li class="nav__item" 
-            v-for="(navItem, index) in navItems"
-            :key="index"
-            >
-            <a href="#">{{ navItem }}</a>
-        </li>
+        <router-link class="nav__item" to="/home">Home</router-link>
+        <router-link class="nav__item" to="/blog">Blog</router-link>
+        <router-link class="nav__item" to="/project">Project</router-link>
     </ul>
 </template>
   
@@ -13,16 +10,13 @@
   export default {
     name: 'NavComponent',
     props: {
-     navItems: {
-        type: Array,
-        required: true
-     }
+ 
     },
     data(){
         return {
-           
+        
         }
-    }
+    },
   }
   </script>
   
@@ -41,4 +35,18 @@
         line-height: 125%;
     }
 }
+
+.nav.footer-nav{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    }
+    .nav.footer-nav>a{
+        color: $color-text;
+            font-family: Jost;
+            font-size: 22px;
+            line-height: 300%; /* 66px */
+            letter-spacing: 0.22px; 
+            margin-left: 0;
+    }
 </style>
