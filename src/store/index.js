@@ -9,6 +9,7 @@ export default new Vuex.Store({
         products: [],
         currentCarts: 1,
         stapItemsCarts: 6,
+        stapItemsProjectCarts: 8,
         paginationsLenght: 0,
         paginations: ['01', '02', '03', '>'],
         productParty: [],
@@ -18,9 +19,14 @@ export default new Vuex.Store({
         progectObjKey: 'Artchitecture',
         projectBtn: ['Bathroom', 'Bed Room', 'Kitchan', 'Living Area'],
         projectParty: [],
+        isPage: '',
     },
 
     mutations: {
+        SET_IS_PAGE(state, page){
+            state.isPage = page;
+        },
+
         SET_CARTS_OBJ(state, obj){
             state.cartsObj = obj;
         },
@@ -37,16 +43,15 @@ export default new Vuex.Store({
             state.products = products;
         },
 
-        STAP_PAGINATION(state){          
+        STAP_PAGINATION(state){        
             const startIndex = (state.currentCarts -1) * state.stapItemsCarts;
             const endIndex = startIndex + state.stapItemsCarts;
-            state.products.slice(startIndex, endIndex)
+            state.products.slice(startIndex, endIndex);
          
         },
 
         SET_PRODUCTS_PARTY(state, elements){
             state.productParty = elements;
-            console.log(state.productParty)
         },
 
         SET_PROJECT_PARTY(state, elements){
@@ -80,6 +85,7 @@ export default new Vuex.Store({
         GET_SLIDER_ITEMS: (state) => state.sliderItems,
         GET_PAGINATIONS: (state) => state.paginations,
         GET_PRODUCT_PARTY: (state) => state.productParty,
+        // GET_IS_PAGE: (state) => state.isPage,
     },
 
     actions: {
@@ -88,6 +94,7 @@ export default new Vuex.Store({
                 {id: 1, name: 'slider 1', urlImg: 'slide1.png', isActive: false},
                 {id: 2, name: 'slider 2', urlImg: 'project-img2.png', isActive: false},
                 {id: 3, name: 'slider 3', urlImg: 'project-img6.png', isActive: false},
+                {id: 4, name: 'slider 4', urlImg: 'project-img2.png', isActive: false},
             ];
             commit('ADD_SLIDERITEMS', sliderItems);
         },
@@ -230,6 +237,23 @@ export default new Vuex.Store({
                     {imgUrl: 'project-img4.png', title: 'Minimal Bedroom'},
                     {imgUrl: 'project-img6.png', title: 'System Table'},
                     {imgUrl: 'project-img8.png', title: 'Minimal Bedroom'},
+
+                    {imgUrl: 'project-img3.png', title: 'Minimal Bedroom'},
+                    {imgUrl: 'project-img7.png', title: 'Minimal Bedroom'},
+                    {imgUrl: 'project-img6.png', title: 'System Table'},
+                    {imgUrl: 'project-img4.png', title: 'Minimal Bedroom'},
+                    {imgUrl: 'project-img3.png', title: 'Classic Minimal Bedroom'},
+                    {imgUrl: 'project-img5.png', title: 'Minimal Bedroom table'},
+                    {imgUrl: 'project-img2.png', title: 'Minimal Bedroom'},
+                    {imgUrl: 'project-img8.png', title: 'Minimal Bedroom'},
+
+                    {imgUrl: 'project-img1.png', title: 'Minimal Bedroom'},
+                    {imgUrl: 'project-img1.png', title: 'Classic Minimal Bedroom'},
+                    {imgUrl: 'project-img1.png', title: 'Minimal Bedroom table'},
+                    {imgUrl: 'project-img1.png', title: 'Minimal Bedroom'},
+                    {imgUrl: 'project-img1.png', title: 'Minimal Bedroom'},
+                    {imgUrl: 'project-img1.png', title: 'Minimal Bedroom'},
+                    {imgUrl: 'project-img1.png', title: 'System Table'},
                 ],
                 Bed_Room: [
                     {imgUrl: 'project-img1.png', title: 'Minimal Bedroom'},
@@ -275,18 +299,18 @@ export default new Vuex.Store({
             commit('SET_CARTS_OBJ', cartsObj)
         },
 
-        CHANGR_PRODUCT_LIST({commit, state}, item){
+        CHANGE_PRODUCT_LIST({commit, state}, item){
             state.currentCarts = Number(item.slice(0));
             const startIndex = (state.currentCarts -1) * state.stapItemsCarts;
             const endIndex = startIndex + state.stapItemsCarts;
             commit('SET_PRODUCTS_PARTY', state.products.slice(startIndex, endIndex));
         },
 
-        CHANGR_PROJECT_LISt({commit, state}, item, key){
+        CHANGE_PROJECT_LISt({commit, state}, item){
             state.currentProject = Number(item.slice(0));
-            const startIndex = (state.currentCarts -1) * state.stapItemsCarts;
-            const endIndex = startIndex + state.stapItemsCarts;
-            commit('SET_PROJECT_PARTY', state.cartsObj[key].slice(startIndex, endIndex));
+            const startIndex = (state.currentProject -1) * state.stapItemsProjectCarts;
+            const endIndex = startIndex + state.stapItemsProjectCarts;
+            commit('SET_PROJECT_PARTY', state.cartsObj[state.progectObjKey].slice(startIndex, endIndex));
         },
 
         // SCROL_PAGINATIONS({commit, state}){

@@ -4,7 +4,7 @@
             <li class="pagination__item"
                 v-for="(item, index) in paginations"
                 :key="index"
-            ><router-link class="pagination__link" :to="`/blog/${item}`"
+            ><router-link class="pagination__link" :to="`/${isPage}/${item}`"
             >
                 {{ item}}
             </router-link>
@@ -32,37 +32,31 @@ export default {
     watch: {
         $route(){
             const {item} = this.$route.params;
-            // const page = this.$route.path.split('/').slice(1, 2).join();
-            if (item.length < 2) {
-                console.log('Меняем пагинацию')
-                // this.SCROL_POGINATION();
+            const page = this.$route.path.split('/').slice(1, 2).join();
+            if (page === 'blog'){
+                console.log(page)
+                if (item.length < 2) {
+                    console.log('Меняем пагинацию');
+                    // this.SCROL_POGINATION();
+                }else{
+                    this.CHANGE_PRODUCT_LIST(item);
+                }
+            }else if(page === 'project'){
+                if (item.length < 2) {
+                    console.log(page + ' ' +'Меняем пагинацию');
+                    // this.SCROL_POGINATION();
+                }else{
+                    this.CHANGE_PROJECT_LISt(item);
+                }
             }else{
-                this.CHANGR_PRODUCT_LIST(item)
+                console.log('error');
             }
-
-            // if (page === 'blog'){
-            //     if (item.length < 2) {
-            //         console.log('Меняем пагинацию')
-            //         // this.SCROL_POGINATION();
-            //     }else{
-            //         // this.CHANGR_PRODUCT_LIST(item)
-            //     }
-            // }else if(page === 'project'){
-            //     if (item.length < 2) {
-            //         console.log('Меняем пагинацию')
-            //         // this.SCROL_POGINATION();
-            //     }else{
-            //         this.CHANGR_PROJECT_LISt(item)
-            //     }
-            // }else{
-            //     console.log('error')
-            // }
             
         }
     },
 
     computed: {
-        ...mapState(['paginations']),
+        ...mapState(['paginations', 'isPage']),
        ...mapGetters(['GET_PAGINATIONS']),
 
     },
@@ -72,7 +66,7 @@ export default {
     },
 
     methods: {
-        ...mapActions(['SCROL_PAGINATIONS', 'CHANGR_PRODUCT_LIST']),
+        ...mapActions(['SCROL_PAGINATIONS', 'CHANGE_PROJECT_LISt', 'CHANGE_PRODUCT_LIST']),
         showPagination(item){
             this.$emit('showPagination', item);
         },

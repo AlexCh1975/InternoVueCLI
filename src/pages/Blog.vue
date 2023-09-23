@@ -64,7 +64,7 @@ import BreadcrumbsComp from '@/components/BreadcrumbsComp.vue';
 import NewsCardComponent from '@/components/NewsCardComponent.vue';
 import PaginationItem from '@/components/PaginationItem.vue';
 
-import {mapActions, mapGetters, mapState} from 'vuex';
+import {mapActions, mapGetters, mapMutations, mapState} from 'vuex';
 
   export default {
     name: 'BlogComp',
@@ -86,19 +86,22 @@ import {mapActions, mapGetters, mapState} from 'vuex';
     },
 
     mounted() {
-        this.CHANGR_PRODUCT_LIST('01');
+        this.CHANGE_PRODUCT_LIST('01');
+        this.SET_IS_PAGE('blog');
+
     },
 
     computed: {
-        ...mapState(['productParty', 'products']),
+        ...mapState(['productParty', 'products', 'isPage']),
         ...mapGetters(['GET_PRODUCT_PARTY']),
     },
     methods: {
-        ...mapActions(['feachProducts', 'CHANGR_PRODUCT_LIST']),
+        ...mapActions(['feachProducts', 'CHANGE_PRODUCT_LIST']),
+        ...mapMutations(['SET_IS_PAGE']),
 
     },
     created(){
- 
+        
     }
   }
   </script>

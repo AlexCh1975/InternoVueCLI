@@ -5,6 +5,8 @@ import HomePage from '@/pages/Home.vue'
 import BlogPage from '@/pages/Blog.vue'
 import ProjectPage from '@/pages/ProjectComp.vue'
 import NotFound from '@/pages/NotFound.vue'
+import ProjectDetails from '@/pages/ProjectDetails.vue';
+import BlogDetails from '@/pages/BlogDetails.vue';
 
 Vue.use(Router);
 
@@ -29,6 +31,12 @@ export default new Router({
 
         },
         {
+            path: '/blogdetails',
+            component: BlogDetails,
+            name: 'BlogDetails'
+
+        },
+        {
             path: '/project',
             name: 'Project',
             component: ProjectPage
@@ -36,8 +44,12 @@ export default new Router({
         },
         {
             path: '/project/:item',
-            component: ProjectPage
-            // component: import('@/pages/ProjectComp.vue')
+            component: ProjectPage,
+        },
+        {
+            path: '/projectdetails',
+            component: ProjectDetails,
+            name: 'ProjectDetails'
         },
         {
             path: '/404*',

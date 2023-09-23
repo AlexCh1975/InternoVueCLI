@@ -11,16 +11,26 @@
                 </div>
                 <div class="cart__block">
                     <div class="cart__date">{{product.date}}</div>
-                    <div class="cart__arrew">
-                        <svg class="cart__arrew_svg" xmlns="http://www.w3.org/2000/svg" width="52" height="53" viewBox="0 0 52 53" fill="none">
+                    <button class="cart__arrew">
+                        <router-link to="/blogdetails">
+                                <svg class="cart__arrew_svg" xmlns="http://www.w3.org/2000/svg" width="52" height="53" viewBox="0 0 52 53" fill="none">
+                                <circle cx="26" cy="26.267" r="26" fill="#F4F0EC"/>
+                                <path d="M23.7714 32.9527L29.7143 26.267L23.7714 19.5813" stroke="#292F36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <svg class="cart__arrew_svg-hover" xmlns="http://www.w3.org/2000/svg" width="52" height="53" viewBox="0 0 52 53" fill="none">
+                                <circle cx="26" cy="26.267" r="26" fill="#fff"/>
+                                <path d="M23.7714 32.9527L29.7143 26.267L23.7714 19.5813" stroke="#292F36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </router-link>
+                        <!-- <svg class="cart__arrew_svg" xmlns="http://www.w3.org/2000/svg" width="52" height="53" viewBox="0 0 52 53" fill="none">
                             <circle cx="26" cy="26.267" r="26" fill="#F4F0EC"/>
                             <path d="M23.7714 32.9527L29.7143 26.267L23.7714 19.5813" stroke="#292F36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                         <svg class="cart__arrew_svg-hover" xmlns="http://www.w3.org/2000/svg" width="52" height="53" viewBox="0 0 52 53" fill="none">
                             <circle cx="26" cy="26.267" r="26" fill="#fff"/>
                             <path d="M23.7714 32.9527L29.7143 26.267L23.7714 19.5813" stroke="#292F36" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
+                        </svg> -->
+                    </button>
                 </div>
             </div>
         <!-- </div> -->

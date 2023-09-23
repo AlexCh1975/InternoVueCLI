@@ -44,7 +44,7 @@
 import BreadcrumbsComp from '@/components/BreadcrumbsComp.vue';
 import CartProject from '@/components/CartProject.vue';
 import PaginationItem from '@/components/PaginationItem.vue'
-import {mapActions, mapState} from 'vuex';
+import {mapActions, mapMutations, mapState} from 'vuex';
 
 export default {
     name: 'ProjectComp',
@@ -61,11 +61,18 @@ export default {
 
         };
     },
+    mounted(){
+        this.CHANGE_PROJECT_LISt('01');
+        this.SET_IS_PAGE('project');
+    },
+
     computed: {
-        ...mapState(['cartsObj']),
+        ...mapState(['cartsObj', 'isPage', 'projectParty']),
 
         isCarts(){
-            return this.cartsObj[this.key];
+            // console.log(this.projectParty)
+            return this.projectParty;
+            // return this.cartsObj[this.key];
         },
 
         isCartsLeft(){
@@ -77,7 +84,8 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['fetchCartsObj']),
+        ...mapActions(['fetchCartsObj', 'CHANGE_PROJECT_LISt']),
+        ...mapMutations(['SET_IS_PAGE']),
 
         selectProject(btn, index){
             btn = btn.split(' ').join('_');
